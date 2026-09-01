@@ -48,7 +48,7 @@
     
     <g class="row" style="animation-delay:0.10s">
       <text x="34" y="72" font-size="14.5" fill="#c98a00">uptime</text>
-      <text x="176" y="72" font-size="14.5" fill="#ffb000">2y 7m</text>
+      <text x="176" y="72" font-size="14.5" fill="#ffb000">2y 8m</text>
     </g>
     <g class="row" style="animation-delay:0.19s">
       <text x="34" y="98" font-size="14.5" fill="#c98a00">repos</text>
