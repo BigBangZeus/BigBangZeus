@@ -100,7 +100,7 @@ system design and performance optimization.
      The ?v= is a cache-buster: GitHub's camo image proxy caches by URL and
      had cached the 404 from before the workflow first ran. Bump it if the
      snake ever goes stale. -->
-<img src="https://raw.githubusercontent.com/BigBangZeus/BigBangZeus/output/snake-amber.svg?v=3" width="100%" alt="contribution snake">
+<img src="https://raw.githubusercontent.com/BigBangZeus/BigBangZeus/output/snake-amber.svg?v=4" width="100%" alt="contribution snake">
 
 </div>
 

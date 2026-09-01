@@ -18,6 +18,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Needed for scripts/strip-snake-bar.mjs — snk itself does not require it.
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
       - name: Generate snake
         uses: Platane/snk@v3
         id: snake
@@ -31,6 +38,26 @@ jobs:
           outputs: |
             dist/snake-amber.svg?color_snake=#ffb000&color_dots=#2b1d00,#7a4d00,#c98a00,#ffb000,#ffd166
             dist/snake-amber-dark.svg?color_snake=#ffd166&color_dots=#1a1200,#6b4200,#c98a00,#ffb000,#ffe9b0
+
+      # snk draws a solid progress bar under the grid. It fills almost instantly
+      # at a low contribution count and just sits there dominating the image.
+      - name: Strip progress bar
+        run: node scripts/strip-snake-bar.mjs dist/snake-amber.svg dist/snake-amber-dark.svg
+
+      - name: Verify output
+        run: |
+          fail=0
+          for f in dist/snake-amber.svg dist/snake-amber-dark.svg; do
+            if [ ! -s "$f" ] || ! head -c 200 "$f" | grep -q "<svg"; then
+              echo "::error::$f missing or not valid SVG"; fail=1; continue
+            fi
+            # A colour without '#' silently renders the snake unfilled.
+            if grep -qE '\-\-cs:[^#]' "$f"; then
+              echo "::error::$f has an invalid --cs colour (missing '#')"; fail=1
+            fi
+            echo "ok $f ($(stat -c%s "$f") bytes)"
+          done
+          exit $fail
 
       - name: Push to output branch
         uses: crazy-max/ghaction-github-pages@v4
