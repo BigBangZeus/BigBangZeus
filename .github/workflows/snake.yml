@@ -23,9 +23,14 @@ jobs:
         id: snake
         with:
           github_user_name: ${{ github.repository_owner }}
+          # NOTE: every colour needs the leading '#'. Omitting it on color_snake
+          # emitted `--cs:ffb000`, an invalid CSS colour, so the snake rendered
+          # with no fill (it looked like black squares crawling the grid).
+          # Level-0 dot brightened from #140c00 -> #2b1d00 so the empty grid is
+          # actually legible against GitHub's #0d1117 page background.
           outputs: |
-            dist/snake-amber.svg?color_snake=ffb000&color_dots=#140c00,#6b4200,#c98a00,#ffb000,#ffd166
-            dist/snake-amber-dark.svg?palette=github-dark&color_snake=ffd166
+            dist/snake-amber.svg?color_snake=#ffb000&color_dots=#2b1d00,#7a4d00,#c98a00,#ffb000,#ffd166
+            dist/snake-amber-dark.svg?color_snake=#ffd166&color_dots=#1a1200,#6b4200,#c98a00,#ffb000,#ffe9b0
 
       - name: Push to output branch
         uses: crazy-max/ghaction-github-pages@v4
