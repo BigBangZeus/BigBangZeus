@@ -43,6 +43,17 @@ for (const f of files) {
     console.log(`${f}: removed ${bars.length} bar(s), viewBox not matched`);
   }
 
-  await writeFile(f, s);
+  try {
+    await writeFile(f, s);
+  } catch (err) {
+    if (err.code === "EACCES" || err.code === "EPERM") {
+      console.error(
+        `\n${f}: ${err.code} on write.\n` +
+        `Platane/snk is a Docker action and writes dist/ as root; this step runs\n` +
+        `as a normal user. Add "sudo chown -R \\"$(id -u):$(id -g)\\" dist" before it.\n`
+      );
+    }
+    throw err;
+  }
   console.log(`   ${before} -> ${s.length} bytes`);
 }

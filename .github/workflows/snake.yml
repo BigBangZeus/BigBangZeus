@@ -46,8 +46,17 @@ jobs:
 
       # snk draws a solid progress bar under the grid. It fills almost instantly
       # at a low contribution count and just sits there dominating the image.
+      #
+      # Platane/snk@v3 is a Docker container action: it runs as root, so the
+      # files it writes into dist/ are owned by root. This `run:` step executes
+      # as the `runner` user, which can read them but gets EACCES on write.
+      # That is how the first attempt at this step failed. Take ownership first.
+      # The `ls -la` stays so the log shows real ownership if this recurs.
       - name: Strip progress bar
-        run: node scripts/strip-snake-bar.mjs dist/snake-amber.svg dist/snake-amber-dark.svg
+        run: |
+          ls -la dist
+          sudo chown -R "$(id -u):$(id -g)" dist
+          node scripts/strip-snake-bar.mjs dist/snake-amber.svg dist/snake-amber-dark.svg
 
       - name: Verify output
         run: |
