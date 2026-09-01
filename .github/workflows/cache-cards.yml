@@ -13,10 +13,15 @@ on:
   schedule:
     - cron: "17 5 * * *"      # daily 05:17 UTC
   workflow_dispatch:
+  # Only re-run on push when the GENERATOR changes. This previously ran on
+  # every push to main and committed refreshed cards straight back, which put
+  # the remote ahead of you and made your next manual push get rejected with
+  # "fetch first". Deliberately does NOT list this workflow file itself —
+  # editing the workflow does not change the rendered cards.
   push:
     branches: [main]
-    paths-ignore:
-      - "assets/cache/**"     # don't retrigger on our own commit
+    paths:
+      - "scripts/gen-cards.mjs"
 
 permissions:
   contents: write

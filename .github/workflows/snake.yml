@@ -8,8 +8,13 @@ on:
   schedule:
     - cron: "23 */12 * * *"
   workflow_dispatch:
+  # Safe to run on push: this publishes to the `output` branch, not `main`,
+  # so it never races your pushes the way cache-cards did.
   push:
     branches: [main]
+    paths:
+      - ".github/workflows/snake.yml"
+      - "scripts/strip-snake-bar.mjs"
 
 permissions:
   contents: write
