@@ -12,12 +12,17 @@
 
 import { writeFile, mkdir } from "node:fs/promises";
 
-const COLS = 59;
-const ROWS = 8;
-const X0 = 28, Y0 = 28;
-const CW = 16, CH = 15.5;
-const D = 11;            // dot size
-const W = 1000, H = 180;
+// 25 x 4 = 100 dots. Fewer dots in the same width means each one has to be
+// bigger, or the panel reads as sparse rather than deliberate — so the dot
+// grew 11 -> 24px and the grid is centred with generous gaps.
+const COLS = 25;
+const ROWS = 4;
+const D = 24;            // dot size
+const CW = 36.8, CH = 37;
+const W = 1000, H = 200;
+// centre the grid in the panel
+const X0 = (W - ((COLS - 1) * CW + D)) / 2;
+const Y0 = (H - ((ROWS - 1) * CH + D)) / 2;
 const DUR = 4.6;         // master wave period (s)
 
 // Deterministic PRNG so regenerating yields an identical file (no git churn).
@@ -37,7 +42,8 @@ for (let row = 0; row < ROWS; row++) {
 
     // Diagonal traveling wave. Negative delay starts each dot mid-cycle so the
     // field is already in motion at t=0 rather than igniting from a flat state.
-    const phase = col * 0.052 + row * 0.115 + rnd() * 0.22;
+    // Coarser grid needs a bigger per-column step or the wave is imperceptible.
+    const phase = col * 0.12 + row * 0.22 + rnd() * 0.16;
     const delay = r2(-(phase % DUR));
 
     // Peak brightness tier. Weighted so most dots stay mid-amber and only a
@@ -50,7 +56,7 @@ for (let row = 0; row < ROWS; row++) {
 
     dots.push(
       `<rect class="d t${tier}${twinkle ? " k" : ""}" x="${x}" y="${y}" ` +
-      `width="${D}" height="${D}" rx="3" style="animation-delay:${delay}s"/>`
+      `width="${D}" height="${D}" rx="6" style="animation-delay:${delay}s"/>`
     );
   }
 }
