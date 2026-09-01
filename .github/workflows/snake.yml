@@ -4,17 +4,13 @@ name: snake
 # Output is committed to the `output` branch, so it is served from GitHub's
 # CDN — no third-party runtime dependency, nothing to rate-limit.
 
+# DISPATCH-ONLY. The README no longer displays the snake — it was replaced by
+# assets/dotfield.svg, a purely decorative animation — so running this on a
+# schedule would burn CI minutes and force-push the `output` branch for an
+# image nothing references. Left intact rather than deleted: hit "Run workflow"
+# in the Actions tab to regenerate, then restore the <img> tag in README.md.
 on:
-  schedule:
-    - cron: "23 */12 * * *"
   workflow_dispatch:
-  # Safe to run on push: this publishes to the `output` branch, not `main`,
-  # so it never races your pushes the way cache-cards did.
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/snake.yml"
-      - "scripts/strip-snake-bar.mjs"
 
 permissions:
   contents: write
