@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" width="1000" height="400" role="img" aria-label="BigBangZeus system information card">
+  <title>bigbangzeus@github — system info</title>
+
+  <defs>
+    <filter id="g1" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="g2" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <pattern id="sl" width="3" height="3" patternUnits="userSpaceOnUse">
+      <rect width="3" height="1.5" fill="#000" opacity="0.28"/>
+    </pattern>
+
+    <radialGradient id="vig" cx="50%" cy="50%" r="72%">
+      <stop offset="58%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.7"/>
+    </radialGradient>
+
+    <linearGradient id="bolt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#ffd166"/>
+      <stop offset="100%" stop-color="#c98a00"/>
+    </linearGradient>
+
+    <clipPath id="card"><rect x="8" y="8" width="984" height="384" rx="10"/></clipPath>
+  </defs>
+
+  <style>
+    text { font-family: "Courier New", Courier, "DejaVu Sans Mono", monospace; }
+
+    .f { opacity: 0; animation: fin 9s ease-out infinite; }
+    @keyframes fin {
+      0%, 6%   { opacity: 0; transform: translateX(-6px); }
+      13%, 94% { opacity: 1; transform: translateX(0); }
+      100%     { opacity: 0; transform: translateX(-6px); }
+    }
+
+    .boltdraw {
+      stroke-dasharray: 900;
+      stroke-dashoffset: 900;
+      animation: draw 9s ease-in-out infinite;
+    }
+    @keyframes draw {
+      0%,4%    { stroke-dashoffset: 900; }
+      26%,100% { stroke-dashoffset: 0; }
+    }
+
+    .boltfill { opacity: 0; animation: bf 9s ease-in-out infinite; }
+    @keyframes bf {
+      0%,22%   { opacity: 0; }
+      32%      { opacity: 1; }
+      38%      { opacity: 0.55; }
+      46%,100% { opacity: 0.92; }
+    }
+
+    .ring { animation: pulse 3.1s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    @keyframes pulse {
+      0%,100% { opacity: .30; transform: scale(1); }
+      50%     { opacity: .07; transform: scale(1.09); }
+    }
+
+    .cursor { animation: blink 1.06s steps(1) infinite; }
+    @keyframes blink { 0%,50%{opacity:1} 50.01%,100%{opacity:0} }
+
+    .scan { animation: drift 1.1s linear infinite; }
+    @keyframes drift { to { transform: translateY(3px); } }
+
+    .tube { animation: flick 4.3s ease-in-out infinite; }
+    @keyframes flick {
+      0%,100%{opacity:1} 38%{opacity:.96} 40%{opacity:1} 71%{opacity:.94} 73%{opacity:1}
+    }
+  </style>
+
+  <g class="tube">
+    <rect width="1000" height="400" rx="12" fill="#0d0900"/>
+    <rect x="8" y="8" width="984" height="384" rx="10" fill="#140c00"
+          stroke="#ffb000" stroke-opacity="0.34"/>
+
+    <g clip-path="url(#card)">
+
+      <!-- ── corner HUD brackets ── -->
+      <g stroke="#ffb000" stroke-opacity="0.5" stroke-width="2" fill="none">
+        <path d="M24 46 V24 H46"/>
+        <path d="M954 24 H976 V46"/>
+        <path d="M24 354 V376 H46"/>
+        <path d="M976 354 V376 H954"/>
+      </g>
+
+      <!-- ── left: Zeus bolt ── -->
+      <circle class="ring" cx="182" cy="200" r="118" fill="none" stroke="#ffb000" stroke-width="1.5"/>
+      <circle class="ring" cx="182" cy="200" r="92" fill="none" stroke="#ffb000" stroke-width="1" style="animation-delay:.5s"/>
+
+      <g filter="url(#g1)">
+        <polygon class="boltfill"
+                 points="205,78 128,214 176,214 148,322 246,178 196,178 238,78"
+                 fill="url(#bolt)"/>
+        <polygon class="boltdraw"
+                 points="205,78 128,214 176,214 148,322 246,178 196,178 238,78"
+                 fill="none" stroke="#ffd166" stroke-width="2.5"
+                 stroke-linejoin="round"/>
+      </g>
+
+      <text class="f" x="182" y="358" font-size="12" fill="#c98a00"
+            text-anchor="middle" letter-spacing="3.4" style="animation-delay:1.7s">ZEUS.SYS</text>
+
+      <!-- ── right: neofetch fields ── -->
+      <text class="f" x="376" y="66" font-size="17" fill="#ffd166" filter="url(#g2)"
+            letter-spacing="1" style="animation-delay:.05s">bigbangzeus@github</text>
+      <text class="f" x="376" y="84" font-size="13" fill="#8a5f00"
+            style="animation-delay:.12s">─────────────────────────────────</text>
+
+      <g font-size="14.5">
+        <g class="f" style="animation-delay:.20s">
+          <text x="376" y="114" fill="#c98a00">role</text>
+          <text x="516" y="114" fill="#ffb000">Full-Stack Developer</text>
+        </g>
+        <g class="f" style="animation-delay:.34s">
+          <text x="376" y="140" fill="#c98a00">base</text>
+          <text x="516" y="140" fill="#ffb000">Chicago &lt;-&gt; Tampa</text>
+        </g>
+        <g class="f" style="animation-delay:.48s">
+          <text x="376" y="166" fill="#c98a00">langs</text>
+          <text x="516" y="166" fill="#ffb000">TypeScript · Python · JavaScript</text>
+        </g>
+        <g class="f" style="animation-delay:.62s">
+          <text x="376" y="192" fill="#c98a00">frontend</text>
+          <text x="516" y="192" fill="#ffb000">React · Next.js · Three.js · Vite</text>
+        </g>
+        <g class="f" style="animation-delay:.76s">
+          <text x="376" y="218" fill="#c98a00">backend</text>
+          <text x="516" y="218" fill="#ffb000">Node.js · .NET · GraphQL</text>
+        </g>
+        <g class="f" style="animation-delay:.90s">
+          <text x="376" y="244" fill="#c98a00">data</text>
+          <text x="516" y="244" fill="#ffb000">PostgreSQL · MongoDB · SQLite</text>
+        </g>
+        <g class="f" style="animation-delay:1.04s">
+          <text x="376" y="270" fill="#c98a00">infra</text>
+          <text x="516" y="270" fill="#ffb000">Docker · AWS · Vercel · Actions</text>
+        </g>
+        <g class="f" style="animation-delay:1.18s">
+          <text x="376" y="296" fill="#c98a00">focus</text>
+          <text x="516" y="296" fill="#ffb000">system design · performance</text>
+        </g>
+        <g class="f" style="animation-delay:1.32s">
+          <text x="376" y="322" fill="#c98a00">ethos</text>
+          <text x="516" y="322" fill="#ffd166">quality &gt; visibility</text>
+        </g>
+      </g>
+
+      <!-- palette swatches -->
+      <g class="f" style="animation-delay:1.50s">
+        <rect x="376" y="342" width="26" height="13" fill="#3d2600"/>
+        <rect x="404" y="342" width="26" height="13" fill="#6b4200"/>
+        <rect x="432" y="342" width="26" height="13" fill="#8a5f00"/>
+        <rect x="460" y="342" width="26" height="13" fill="#c98a00"/>
+        <rect x="488" y="342" width="26" height="13" fill="#ffb000"/>
+        <rect x="516" y="342" width="26" height="13" fill="#ffc947"/>
+        <rect x="544" y="342" width="26" height="13" fill="#ffd166"/>
+        <rect x="572" y="342" width="26" height="13" fill="#ffe9b0"/>
+      </g>
+      <rect class="cursor" x="608" y="342" width="9" height="13" fill="#ffd166"/>
+
+      <!-- overlays -->
+      <rect class="scan" x="8" y="-4" width="984" height="404" fill="url(#sl)"/>
+      <rect x="8" y="8" width="984" height="384" rx="10" fill="url(#vig)"/>
+    </g>
+  </g>
+</svg>

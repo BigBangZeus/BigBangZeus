@@ -1,0 +1,70 @@
+name: cache-cards
+
+# WHY THIS EXISTS
+# github-readme-stats / github-profile-trophy run on shared public Vercel
+# instances. When they hit their API quota they return 429 and your README
+# shows broken images — which is exactly the bug you had.
+#
+# This job fetches those cards ONCE a day from CI and commits the SVGs into
+# the repo. Visitors then load them from GitHub's own CDN, which never
+# rate-limits. If the upstream service is down at build time we keep the
+# previously-cached copy instead of overwriting it with an error page.
+
+on:
+  schedule:
+    - cron: "17 5 * * *"      # daily 05:17 UTC
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch cards (keep last-known-good on failure)
+        env:
+          USER: ${{ github.repository_owner }}
+        run: |
+          mkdir -p assets/cache
+          AMBER="bg_color=140c00&title_color=ffb000&text_color=c98a00&icon_color=ffd166&border_color=8a5f00&hide_border=false"
+
+          fetch() {
+            name="$1"; url="$2"; dest="assets/cache/$name.svg"
+            echo "→ $name"
+            if curl -fsSL --max-time 45 -o "/tmp/$name.svg" "$url"; then
+              # Reject rate-limit / error pages: must be real SVG and non-trivial.
+              if head -c 400 "/tmp/$name.svg" | grep -qi "<svg" \
+                 && [ "$(stat -c%s "/tmp/$name.svg")" -gt 700 ] \
+                 && ! grep -qi "rate limit\|Maximum retries\|error" "/tmp/$name.svg"; then
+                mv "/tmp/$name.svg" "$dest"
+                echo "  ok ($(stat -c%s "$dest") bytes)"
+              else
+                echo "  ✗ upstream returned junk — keeping cached copy"
+              fi
+            else
+              echo "  ✗ fetch failed — keeping cached copy"
+            fi
+          }
+
+          fetch stats \
+            "https://github-readme-stats.vercel.app/api?username=$USER&show_icons=true&rank_icon=github&include_all_commits=true&count_private=true&$AMBER"
+          fetch langs \
+            "https://github-readme-stats.vercel.app/api/top-langs/?username=$USER&layout=compact&langs_count=8&$AMBER"
+          fetch streak \
+            "https://streak-stats.demolab.com/?user=$USER&background=140c00&border=8a5f00&stroke=8a5f00&ring=ffb000&fire=ffd166&currStreakLabel=ffb000&sideLabels=c98a00&currStreakNum=ffd166&sideNums=ffb000&dates=8a5f00"
+          fetch trophies \
+            "https://github-profile-trophy.vercel.app/?username=$USER&theme=gruvbox&no-frame=true&no-bg=true&column=7&margin-w=8&margin-h=8"
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/cache
+          git diff --staged --quiet && echo "no changes" && exit 0
+          git commit -m "chore: refresh cached profile cards [skip ci]"
+          git push
