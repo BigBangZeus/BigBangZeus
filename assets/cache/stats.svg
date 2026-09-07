@@ -52,7 +52,7 @@
     </g>
     <g class="row" style="animation-delay:0.19s">
       <text x="34" y="98" font-size="14.5" fill="#c98a00">repos</text>
-      <text x="176" y="98" font-size="14.5" fill="#ffb000">3</text>
+      <text x="176" y="98" font-size="14.5" fill="#ffb000">5</text>
     </g>
     <g class="row" style="animation-delay:0.28s">
       <text x="34" y="124" font-size="14.5" fill="#c98a00">stars</text>
@@ -60,7 +60,7 @@
     </g>
     <g class="row" style="animation-delay:0.37s">
       <text x="34" y="150" font-size="14.5" fill="#c98a00">forks</text>
-      <text x="176" y="150" font-size="14.5" fill="#ffb000">0</text>
+      <text x="176" y="150" font-size="14.5" fill="#ffb000">1</text>
     </g>
     <g class="row" style="animation-delay:0.46s">
       <text x="34" y="176" font-size="14.5" fill="#c98a00">followers</text>
@@ -72,7 +72,7 @@
     </g>
     <g class="row" style="animation-delay:0.64s">
       <text x="34" y="228" font-size="14.5" fill="#c98a00">languages</text>
-      <text x="176" y="228" font-size="14.5" fill="#ffb000">4</text>
+      <text x="176" y="228" font-size="14.5" fill="#ffb000">5</text>
     </g>
     <g class="row" style="animation-delay:0.73s">
       <text x="34" y="254" font-size="14.5" fill="#c98a00">since</text>
@@ -81,26 +81,32 @@
     <g class="row" style="animation-delay:0.50s">
       <text x="470" y="72" font-size="13.5" fill="#c98a00">TypeScript</text>
       <rect x="596" y="60" width="300" height="11" rx="5.5" fill="#000" fill-opacity="0.5" stroke="#ffb000" stroke-opacity="0.25"/>
-      <rect class="bar" style="animation-delay:0.50s" x="598" y="62" width="164" height="7" rx="3.5" fill="#ffb000"/>
-      <text x="964" y="72" font-size="12" fill="#ffd166" text-anchor="end">54.8%</text>
+      <rect class="bar" style="animation-delay:0.50s" x="598" y="62" width="193" height="7" rx="3.5" fill="#ffb000"/>
+      <text x="964" y="72" font-size="12" fill="#ffd166" text-anchor="end">64.3%</text>
     </g>
     <g class="row" style="animation-delay:0.61s">
       <text x="470" y="102" font-size="13.5" fill="#c98a00">JavaScript</text>
       <rect x="596" y="90" width="300" height="11" rx="5.5" fill="#000" fill-opacity="0.5" stroke="#ffb000" stroke-opacity="0.25"/>
-      <rect class="bar" style="animation-delay:0.61s" x="598" y="92" width="130" height="7" rx="3.5" fill="#ffb000"/>
-      <text x="964" y="102" font-size="12" fill="#ffd166" text-anchor="end">43.3%</text>
+      <rect class="bar" style="animation-delay:0.61s" x="598" y="92" width="43" height="7" rx="3.5" fill="#ffb000"/>
+      <text x="964" y="102" font-size="12" fill="#ffd166" text-anchor="end">14.3%</text>
     </g>
     <g class="row" style="animation-delay:0.72s">
-      <text x="470" y="132" font-size="13.5" fill="#c98a00">HTML</text>
+      <text x="470" y="132" font-size="13.5" fill="#c98a00">Python</text>
       <rect x="596" y="120" width="300" height="11" rx="5.5" fill="#000" fill-opacity="0.5" stroke="#ffb000" stroke-opacity="0.25"/>
-      <rect class="bar" style="animation-delay:0.72s" x="598" y="122" width="4" height="7" rx="3.5" fill="#ffb000"/>
-      <text x="964" y="132" font-size="12" fill="#ffd166" text-anchor="end">1.3%</text>
+      <rect class="bar" style="animation-delay:0.72s" x="598" y="122" width="32" height="7" rx="3.5" fill="#ffb000"/>
+      <text x="964" y="132" font-size="12" fill="#ffd166" text-anchor="end">10.5%</text>
     </g>
     <g class="row" style="animation-delay:0.83s">
       <text x="470" y="162" font-size="13.5" fill="#c98a00">CSS</text>
       <rect x="596" y="150" width="300" height="11" rx="5.5" fill="#000" fill-opacity="0.5" stroke="#ffb000" stroke-opacity="0.25"/>
-      <rect class="bar" style="animation-delay:0.83s" x="598" y="152" width="3" height="7" rx="3.5" fill="#ffb000"/>
-      <text x="964" y="162" font-size="12" fill="#ffd166" text-anchor="end">0.6%</text>
+      <rect class="bar" style="animation-delay:0.83s" x="598" y="152" width="30" height="7" rx="3.5" fill="#ffb000"/>
+      <text x="964" y="162" font-size="12" fill="#ffd166" text-anchor="end">10.2%</text>
+    </g>
+    <g class="row" style="animation-delay:0.94s">
+      <text x="470" y="192" font-size="13.5" fill="#c98a00">HTML</text>
+      <rect x="596" y="180" width="300" height="11" rx="5.5" fill="#000" fill-opacity="0.5" stroke="#ffb000" stroke-opacity="0.25"/>
+      <rect class="bar" style="animation-delay:0.94s" x="598" y="182" width="3" height="7" rx="3.5" fill="#ffb000"/>
+      <text x="964" y="192" font-size="12" fill="#ffd166" text-anchor="end">0.7%</text>
     </g>
     <rect class="cur" x="34" y="272" width="9" height="14" fill="#ffd166"/>
     <text x="52" y="284" font-size="12" fill="#8a5f00">refreshed daily via github actions</text>

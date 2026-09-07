@@ -106,8 +106,8 @@
       <text x="544" y="260" font-size="14" fill="#5c3f00" letter-spacing="1.2">CENTURION</text>
       <text x="544" y="277" font-size="11.5" fill="#5c3f00">publish 10 repositories</text>
       <rect x="544" y="285" width="300" height="7" rx="3.5" fill="#000" fill-opacity="0.5" stroke="#ffb000" stroke-opacity="0.2"/>
-      <rect class="bar" style="animation-delay:0.66s" x="545" y="286" width="90" height="5" rx="2.5" fill="#5c3f00"/>
-      <text x="910" y="292" font-size="11" fill="#5c3f00" text-anchor="end">3/10</text>
+      <rect class="bar" style="animation-delay:0.66s" x="545" y="286" width="150" height="5" rx="2.5" fill="#5c3f00"/>
+      <text x="910" y="292" font-size="11" fill="#5c3f00" text-anchor="end">5/10</text>
     </g>
     <rect class="cur" x="34" y="312" width="9" height="14" fill="#ffd166"/>
     <text x="52" y="324" font-size="12" fill="#8a5f00">4 unlocked · 4 remaining</text>
